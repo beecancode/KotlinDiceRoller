@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         val rollButton: Button = findViewById(R.id.button)
         rollButton.setOnClickListener { rollDice() }
 
+        // Do a dice roll when the app starts
+
     }
 
     /**
@@ -28,21 +30,17 @@ class MainActivity : AppCompatActivity() {
         val diceRoll = dice.roll()
         val diceImage: ImageView = findViewById(R.id.imageView)
 
+        val drawableResource = when (diceRoll) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
 
-        when (diceRoll) {
-            //If the user rolls a 1, then display the dice_1 image.
-            1 -> diceImage.setImageResource(R.drawable.dice_1)
-            //If the user rolls a 2, then display the dice_2 image.
-            2 -> diceImage.setImageResource(R.drawable.dice_2)
-            //If the user rolls a 3, then display the dice_3 image.
-            3 -> diceImage.setImageResource(R.drawable.dice_3)
-            //If the user rolls a 4, then display the dice_4 image.
-            4 -> diceImage.setImageResource(R.drawable.dice_4)
-            //If the user rolls a 5, then display the dice_5 image.
-            5 -> diceImage.setImageResource(R.drawable.dice_5)
-            //If the user rolls a 6, then display the dice_6 image.
-            6 -> diceImage.setImageResource(R.drawable.dice_6)
         }
+        diceImage.setImageResource(drawableResource)
+        diceImage.contentDescription = diceRoll.toString()
     }
 }
 
